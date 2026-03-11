@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate AI Tools 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card: #161b2a;
+            --text: #ffffff;
+            --accent: #00d2ff;
+            --muted: #94a3b8;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-size: 3rem; margin: 0; background: linear-gradient(to right, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .search-container { text-align: center; margin-bottom: 40px; }
+        #search { padding: 12px 20px; width: 300px; border-radius: 30px; border: 1px solid #334155; background: #1e293b; color: white; outline: none; }
+
+        .category-group { margin-bottom: 50px; }
+        .category-title { font-size: 1.8rem; border-bottom: 2px solid #334155; padding-bottom: 10px; margin-bottom: 25px; color: var(--accent); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #2d3748;
+            padding: 25px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1); }
+        .card h3 { margin-top: 0; color: var(--accent); font-size: 1.4rem; }
+        .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+        .tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #3a7bd5; font-weight: 600; margin-bottom: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>AI Tools Directory 2026</h1>
+        <p>Your centralized hub for the world's most powerful AI platforms.</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a tool..." onkeyup="filterTools()">
+    </div>
+
+    <div id="directory">
+        </div>
+</div>
+
+<script>
+    async function loadTools() {
+        const response = await fetch('data.json');
+        const tools = await response.json();
+        const directory = document.getElementById('directory');
+        
+        // Group tools by category
+        const groups = tools.reduce((acc, tool) => {
+            acc[tool.cat] = acc[tool.cat] || [];
+            acc[tool.cat].push(tool);
+            return acc;
+        }, {});
+
+        // Build HTML
+        for (const category in groups) {
+            const section = document.createElement('div');
+            section.className = 'category-group';
+            section.innerHTML = `
+                <h2 class="category-title">${category}</h2>
+                <div class="grid">
+                    ${groups[category].map(tool => `
+                        <a href="${tool.url}" target="_blank" class="card">
+                            <span class="tag">${tool.cat}</span>
+                            <h3>${tool.name}</h3>
+                            <p>${tool.desc}</p>
+                        </a>
+                    `).join('')}
+                </div>
+            `;
+            directory.appendChild(section);
+        }
+    }
+
+    function filterTools() {
+        let input = document.getElementById('search').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+            cards[i].style.display = title.includes(input) ? "" : "none";
+        }
+    }
+
+    loadTools();
+</script>
+
+</body>
+</html>
