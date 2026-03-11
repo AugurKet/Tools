@@ -48,7 +48,7 @@
   { "name": "Julius AI", "url": "https://julius.ai", "cat": "Data", "desc": "AI data analyst for charts and spreadsheets." },
   { "name": "Fireflies.ai", "url": "https://fireflies.ai", "cat": "Productivity", "desc": "Records and searches across all your meetings." },
   { "name": "HubSpot AI", "url": "https://hubspot.com", "cat": "Business", "desc": "AI-powered CRM for sales and marketing automation." },
-  { "name": "Retool", "url": "https://retool.com", "cat": "Coding", "desc": "Build internal tools quickly with AI components." }
+  { "name": "Retool", "url": "https://retool.com", "cat": "Coding", "desc": "Build internal tools quickly with AI components." },
   { "name": "Opus Clip", "url": "https://www.opus.pro", "cat": "Video", "desc": "Instantly turn long talk shows or podcasts into viral YouTube Shorts." },
   { "name": "VidIQ AI", "url": "https://vidiq.com", "cat": "Video", "desc": "AI copilot for YouTube channel growth, SEO, and content ideation." },
   { "name": "FinChat", "url": "https://finchat.io", "cat": "Finance", "desc": "AI-powered stock research and financial data analyst for investment planning." },
